@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MYFLIX 포트폴리오</title>
+  <link rel="stylesheet" href="/style/style2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- 다크/라이트 모드 토글 버튼 -->
+  <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1><span class="highlight">양희재</span>의 포트폴리오에 오신 걸 환영합니다</h1>
+      <p class="subtext">프론트엔드 개발자 | 사용자 경험 디자이너</p>
+      <a href="#projects" class="btn">프로젝트 보러가기</a>
+    </div>
+  </header>
+
+  <!-- 네비게이션 -->
+  <nav>
+    <ul>
+      <li><a href="#about">소개</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#contact">연락처</a></li>
+    </ul>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>안녕하세요! 프론트엔드 개발자를 꿈꾸는 양희재입니다. 넷플릭스처럼 멋진 UI와 UX를 구현하는 데 흥미를 가지고 있어요.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="slider-wrapper">
+      <button class="slider-btn left">&#8249;</button>
+      <div class="project-slider">
+        <div class="project-card">
+          <img src="/source/포트폴리오.jpg" alt="포트폴리오" />
+          <div class="overlay">
+            <h3>포트폴리오</h3>
+            <button class="play-btn">▶</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="/source/app.jpg" alt="To-Do 앱" />
+          <div class="overlay">
+            <h3>To-Do 앱</h3>
+            <button class="play-btn">▶</button>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="/source/갤러리.jpg" alt="갤러리" />
+          <div class="overlay">
+            <h3>갤러리</h3>
+            <button class="play-btn">▶</button>
+          </div>
+        </div>
+      </div>
+      <button class="slider-btn right">&#8250;</button>
+    </div>
+  </section>
+
+  <section id="contact">
+  <h2>Contact</h2>
+  <form id="contact-form" novalidate>
+    <label for="name">이름</label>
+    <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required />
+
+    <label for="email">이메일</label>
+    <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required />
+
+    <label for="message">메시지</label>
+    <textarea id="message" name="message" rows="5" placeholder="메시지를 입력하세요" required></textarea>
+
+    <button type="submit">보내기</button>
+  </form>
+  <p id="form-message" role="alert" aria-live="polite"></p>
+</section>
+
+
+  <script>
+    // 슬라이더 좌우 버튼 기능
+    const slider = document.querySelector('.project-slider');
+    const btnLeft = document.querySelector('.slider-btn.left');
+    const btnRight = document.querySelector('.slider-btn.right');
+
+    btnLeft.addEventListener('click', () => {
+      slider.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    btnRight.addEventListener('click', () => {
+      slider.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    // 다크/라이트 모드 토글 기능
+    const toggleBtn = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+
+    if (currentTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      toggleBtn.textContent = '☀️';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggleBtn.textContent = '🌙';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      let theme = document.documentElement.getAttribute('data-theme');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        toggleBtn.textContent = '☀️';
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        toggleBtn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    const form = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // 기본 HTML5 유효성 검사
+  if (!form.checkValidity()) {
+    formMessage.style.color = 'red';
+    formMessage.textContent = '모든 필드를 올바르게 입력해 주세요.';
+    return;
+  }
+
+  // 폼 데이터 읽기
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  // 간단한 이메일 형식 체크 (더 엄격히 해도 됨)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    formMessage.style.color = 'red';
+    formMessage.textContent = '유효한 이메일 주소를 입력해 주세요.';
+    return;
+  }
+
+  // 성공 메시지 보여주기
+  formMessage.style.color = 'var(--primary-color)';
+  formMessage.textContent = `${name}님, 메시지 감사합니다! 빠르게 연락드리겠습니다.`;
+
+  // 폼 초기화
+  form.reset();
+});
+  </script>
+
+</body>
+</html>
