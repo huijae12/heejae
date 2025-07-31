@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+/* index.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-card {
+  width: 320px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.profile-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* 그림자 추가 */
+}
+
+.card-icons {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 16px;
+  color: #888;
+  display: flex;
+  gap: 10px;
+}
+
+.card-icons i {
+  font-size: 18px;
+  color: #555;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.card-icons i:hover {
+  color: #1d201f; /* 혹은 원하는 색상 */
+  transform: scale(1.2);
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #1d201f;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.job {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.contact p {
+  font-size: 14px;
+  color: #444;
+  margin: 8px 0;
+}
+
+.contact i {
+  margin-right: 8px;
+  color: #1d201f;
+}
+
+.view-more {
+  background: linear-gradient(to right, #1d201f, #7a8883);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.view-more:hover {
+  background: linear-gradient(to right,#7a8883, #1d201f);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.card-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.circle1 { background-color: #1d201f; }
+.circle2 { background-color: #ffa947; }
+.circle3 { background-color: #10A37F; }
+.circle4 { background-color: #FFCD00; }
+
+.circle:hover {
+  transform: scale(1.2);
+}
+
+.circle.active {
+  outline: 2px solid #444;
+  outline-offset: 2px;  /* 테두리를 바깥쪽으로 띄우기 */
+  transform: scale(1.2);
+}
